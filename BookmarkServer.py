@@ -40,7 +40,7 @@
 # starter code.
 #
 # After writing each step, restart the server and run test.py to test it.
-
+import os
 import http.server
 import requests
 from urllib.parse import unquote, parse_qs
@@ -157,6 +157,7 @@ class Shortener(http.server.BaseHTTPRequestHandler):
             #raise NotImplementedError("Step 5 isn't written yet!")
 
 if __name__ == '__main__':
-    server_address = ('', 8000)
+    port = int(os.environ.get('PORT', 8000))   # Use PORT if it's there.
+    server_address = ('', port)
     httpd = http.server.HTTPServer(server_address, Shortener)
     httpd.serve_forever()
